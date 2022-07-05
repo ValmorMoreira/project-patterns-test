@@ -28,33 +28,29 @@
                 </div>                
             </div>
             
-            <div class="row col s6">
+            <div class="row">
                 <div  class="col s6">
                     <label>CEP</label>
-                    <input type="text" name="log_cep" value="">
+                    <input id="cep" type="text" name="log_cep" value="">
                 </div>
                 <div class="col s6">
                     <label>Endereço</label>
-                <input type="text" name="cli_doctipo" value="">
+                <input id="logradouro" type="text" name="cli_doctipo" value="">
                 </div>
                 <div class="col s6">
                     <label>Nº do endereço</label>
-                    <input type="text" name="cli_docnumero" value="">
+                    <input id="numero" type="text" name="cli_docnumero" value="">
                 </div> 
                 <div class="col s6">
                     <label>Bairro</label>
-                    <input type="text" name="cli_docnumero" value="">
+                    <input id="bairro" type="text" name="cli_docnumero" value="">
                 </div> 
                 <div class="col s6">
                     <label>Cidade</label>
-                    <input type="text" name="cli_docnumero" value="">
-                </div>  
-                <div class="col s6">
-                    <label>Estado</label>
-                    <input type="text" name="cli_docnumero" value="">
-                </div>                  
+                    <input id="cidade" type="text" name="cli_docnumero" value="">
+                </div>
+                <x-forms.select />
             </div>
-                
             
             <div class="col s6 center-align">
                 <button class="btn-large" type="submit" >Cadastrar cliente</button>

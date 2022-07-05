@@ -1,6 +1,6 @@
 @section('nav')
 <div class="navbar-fixed">
-    <nav class="nav-wrapper green"> 
+    <nav class="nav-wrapper green darken-3"> 
         <div class="container">
           <a class="brand-logo" href="{{'Cadastro-de-cliente'}}">
             <img class="nav-logo" style="vertical-align:top;" class="circle my-logo" src={{asset('assets/img/recipe-icon.png')}} >
