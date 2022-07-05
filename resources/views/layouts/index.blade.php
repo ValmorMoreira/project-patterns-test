@@ -7,6 +7,7 @@
   <!-- Custom CSS File -->
   <link rel="stylesheet" href="{{ asset('assets/css/personalStyle.css') }}">
   <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">   
 </head>
 

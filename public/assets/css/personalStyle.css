@@ -1,7 +1,7 @@
 /*Estilo Customizado do site*/
 
 body {
-    background-image: url("..assets/img/bg-image.jpg");
+    background-image: url('../img/Mapa-do-Brasil-BR.png');
     background-repeat: no-repeat;
     background-size:cover;
     background-blend-mode: multiply;
@@ -20,6 +20,10 @@ main {
     margin-top: 8px;
 }
 
+.form-name{
+   text-align: center;
+   font-family:Arial, Helvetica, sans-serif;
+}
 
 .login{
 

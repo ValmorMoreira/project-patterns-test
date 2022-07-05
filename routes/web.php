@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 Route::view('/','welcome');
 
 Route::view('/Cadastro-de-cliente','client-register' );
+Route::view('/Cadastro-de-logradouro','log-register' );
+Route::view('/Listar','list' );
