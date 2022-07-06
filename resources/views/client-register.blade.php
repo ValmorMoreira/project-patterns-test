@@ -42,11 +42,11 @@
                 </div>
                 <div class="col s6">
                     <label>Complemento</label>
-                <input  id="complemento" type="text" name="end_complemento" value="">
+                <input  id="complemento" type="text" name="end_complemento" value="" required>
                 </div>
                 <div class="col s6">
                     <label>Tipo</label>
-                <input id="complemento" type="text" name="log_tipo" value="">
+                <input id="complemento" type="text" name="log_tipo" value="" required>
                 </div>
                 <div class="col s6">
                     <label>Nº do endereço</label>

@@ -8,6 +8,7 @@ use App\Models\Logradouro;
 use App\Models\Estado;
 use App\Models\Cidade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
@@ -16,11 +17,13 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        $enderecos = Endereco::all();
+        //$enderecos = Endereco::all();
+
+       $list = DB::select('SELECT clientes.*, logradouros.log_cep, logradouros.log_nome, enderecos.end_complemento, logradouros.log_tipo, enderecos.end_numero, logradouros.log_bairro FROM enderecos LEFT JOIN clientes ON enderecos.cli_id = clientes.cli_id INNER JOIN logradouros ON enderecos.log_id = logradouros.log_id;');
 
         return view('list', [
             'clientes' => $clientes,
-            'enderecos' => $enderecos,
+            'enderecos' => $list,
         ]);
 
     }
@@ -81,11 +84,17 @@ class ClienteController extends Controller
 
             $estadoId = Estado::find($data['est_nome']);              
             
+            //$total = $novaCidade->where('cid_nome' , $data['cid_nome'])->count();          
+
+
             $novaCidade->cid_nome = $data['cid_nome'];
             $novaCidade->est_id = $estadoId->est_id;
             $novaCidade->save();
 
-            $cidadeId = Cidade::where('cid_nome' , $novaCidade->cid_nome)->first();
+            $cidadeId = $novaCidade::all()->last();
+              
+           
+
 
             $novoLogradouro->log_cep = $data['log_cep'];
             $novoLogradouro->log_nome = $data['log_nome'];
@@ -123,8 +132,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        $c = new Cliente;
-        $c->show($cliente);
+        
     }
 
     /**

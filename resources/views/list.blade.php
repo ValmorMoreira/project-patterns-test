@@ -11,13 +11,22 @@
   <div class="list">
     <ul class="collection">    
       @foreach ($clientes as $cliente)
+        @foreach ($enderecos as $endereco)
         <li class="collection-item avatar">
           <img src={{asset('assets/img/recipe-icon.png')}} alt="" class="circle">
           <span class="title">Nome fantasia: {{$cliente->cli_fantasia}}</span>
           <p> Responsável: {{$cliente->cli_responsavel}}<br>
             Tipo do documento: {{$cliente->cli_doctipo}}<br>
             Nº do documento: {{$cliente->cli_docnumero}}<br>
-          </p>
+            Rua: {{$endereco->log_nome}}<br>
+            Bairro: {{$endereco->log_bairro}}<br>
+            Tipo: {{$endereco->log_tipo}}<br>
+            CEP: {{$endereco->log_cep}}<br>
+            Complemento: {{$endereco->end_complemento}}<br>
+            Número: {{$endereco->end_numero}}<br>
+           
+
+          </p> 
         Cadastrado em : {{date('m/d/Y', strtotime($cliente->created_at))}} 
       <form action="{{route('deletar_cliente', ['cli_id' => $cliente->cli_id])}}" method="POST">
         @csrf
@@ -27,6 +36,7 @@
       </form>
 
       </li>
+      @endforeach   
       @endforeach        
       </ul>
       @else 
