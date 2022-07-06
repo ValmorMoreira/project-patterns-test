@@ -4,6 +4,9 @@
 
 @section('content')    
 <main class="container">
+
+  @include('layouts.flash-message')
+
   @if(count($clientes) > 0)
   <div class="list">
     <ul class="collection">    

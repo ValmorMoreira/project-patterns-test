@@ -20,9 +20,8 @@ Route::get('/', [HomeController::class, 'index']); //Chama a página inicial
 Route::get('/cadastro', [ClienteController::class, 'create']); // Cria o formulário de cadastro
 Route::post('/cadastro', [ClienteController::class, 'store'])->name('salvar_cliente'); // Armazena os dados no banco
 
-Route::get('/cliente/deletar/{cli_id}', [ClienteController::class, 'destroy'])->name('deletar_cliente'); // Destroi um usuário do banco
-
 Route::get('/listar', [ClienteController::class, 'index']); // Lista todos os usuários cadastrados
+Route::get('/cliente/deletar/{cli_id}', [ClienteController::class, 'destroy'])->name('deletar_cliente'); // Destroi um usuário do banco
 
 Route::view('/logradouro/cadastro','log-register' )->name('logregister'); // Carrega tela de cadastro de logradouro
 
