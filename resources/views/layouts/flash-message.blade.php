@@ -7,7 +7,7 @@
   
 @if ($message = Session::get('error'))
 <div class="alert danger">
-    <span  onclick="this.parentElement.style.display='none';" class="closebtn" data-dismiss="alert">&times;</button>    
+    <button  onclick="this.parentElement.style.display='none';" class="closebtn" data-dismiss="alert">&times;</button>    
     <strong>{{ $message }}</strong>
 </div>
 @endif

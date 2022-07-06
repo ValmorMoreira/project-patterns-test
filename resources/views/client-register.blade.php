@@ -34,11 +34,11 @@
             <div class="row">
                 <div  class="col s6">
                     <label>CEP</label>
-                    <input  id="cep" type="text" name="log_cep" value="">
+                    <input pattern="\d{5}-?\d{3}" id="cep" type="text" name="log_cep" value="">
                 </div>
                 <div class="col s6">
                     <label>Endereço</label>
-                <input disabled id="logradouro" type="text" name="cli_doctipo" value="">
+                <input disabled id="logradouro" type="text" name="log_nome" value="">
                 </div>
                 <div class="col s12">
                     <label>Complemento</label>

@@ -18,8 +18,4 @@ class Cliente extends Model
         'cli_docnumero',
     ];
 
-    public function endereco() {
-        return $this->hasOne(Endereco::class, 'end_id');
-    }
-
 }

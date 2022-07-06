@@ -44,6 +44,12 @@ class ClienteController extends Controller
             'cli_docnumero'
         ]);
 
+        //Falta uma validação para direcionar para cadastrar logradouro
+        // if (!!$request->filled('log_nome')) {
+        //     $request->session()->flash('error', 'CEP não localizado, cadastre seu endereço!');
+        //     return redirect('logradouro/cadastro'); 
+        // }
+
        if($cliente){
 
             $novoCliente = new Cliente();

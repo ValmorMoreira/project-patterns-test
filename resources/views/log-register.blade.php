@@ -3,7 +3,9 @@
 @include('layouts.nav')
 
 @section('content')    
+@include('layouts.flash-message')
 <main class="register">
+    
     <div class="card-panel-new ">
         <form action="" method="post">
             <div class="col s6 form-name">                

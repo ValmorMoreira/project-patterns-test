@@ -12,6 +12,4 @@ class Cidade extends Model
     protected $fillable = [
         'cid_nome',
     ];
-
-
 }

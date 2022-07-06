@@ -14,18 +14,17 @@ class CreateLogradourosTable extends Migration
     public function up()
     {
         Schema::create('logradouros', function (Blueprint $table) {
-            $table->BigInteger('log_id', true);
-            $table->string('log_cep');
-            $table->string('log_nome');
-            $table->string('log_tipo');
-            $table->string('log_bairro');
-            $table->timestamps();
+            $table->id('log_id');
             $table->unsignedBigInteger('cid_id');
+            $table->string('log_cep', 9);
+            $table->string('log_nome', 100);
+            $table->string('log_tipo', 50);
+            $table->string('log_bairro', 100);
+            $table->timestamps();
+
+            $table->foreign('cid_id')->references('cid_id')->on('cidades')->onDelete('cascade');
         });
 
-        // Schema::table('logradouros', function (Blueprint $table) {
-        //     $table->foreign('cid_id')->references('cid_id')->on('cidades');
-        // });
     }
 
     /**

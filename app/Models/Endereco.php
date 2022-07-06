@@ -10,7 +10,7 @@ class Endereco extends Model
 {
     use HasFactory;
 
-    protected  $key = 'end_id';
+    protected  $primaryKey = 'end_id';
 
     protected $fillable = [
         'end_complemento',	
@@ -18,12 +18,4 @@ class Endereco extends Model
         'cli_id',
         'log_id',
     ];
-
-    // public function cliente() {
-    //     return $this->hasOne(Cliente::class, 'cli_id');
-    // }
-
-    // public function logradouro() {
-    //     return $this->hasOne(Endereco::class, 'log_id');
-    // }
 }

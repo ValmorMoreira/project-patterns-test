@@ -14,11 +14,11 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->BigInteger('cli_id', true);
-            $table->string('cli_fantasia');
-            $table->string('cli_responsavel');
-            $table->string('cli_doctipo');
-            $table->string('cli_docnumero');
+            $table->id('cli_id');
+            $table->string('cli_fantasia', 255);
+            $table->string('cli_responsavel', 255);
+            $table->string('cli_doctipo', 5);
+            $table->string('cli_docnumero', 50);
             $table->timestamps();
         });
     }
