@@ -16,14 +16,12 @@ class ClienteController extends Controller
 
     public function index()
     {
-        $clientes = Cliente::all();
-        //$enderecos = Endereco::all();
+        //$clientes = Cliente::all();
 
-       $list = DB::select('SELECT clientes.*, logradouros.log_cep, logradouros.log_nome, enderecos.end_complemento, logradouros.log_tipo, enderecos.end_numero, logradouros.log_bairro FROM enderecos LEFT JOIN clientes ON enderecos.cli_id = clientes.cli_id INNER JOIN logradouros ON enderecos.log_id = logradouros.log_id;');
+       $clientes = DB::select('SELECT clientes.*, logradouros.log_cep, logradouros.log_nome, enderecos.end_complemento, logradouros.log_tipo, enderecos.end_numero, logradouros.log_bairro FROM enderecos LEFT JOIN clientes ON enderecos.cli_id = clientes.cli_id INNER JOIN logradouros ON enderecos.log_id = logradouros.log_id;');
 
         return view('list', [
             'clientes' => $clientes,
-            'enderecos' => $list,
         ]);
 
     }

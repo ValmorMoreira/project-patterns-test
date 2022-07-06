@@ -11,19 +11,18 @@
   <div class="list">
     <ul class="collection">    
       @foreach ($clientes as $cliente)
-        @foreach ($enderecos as $endereco)
         <li class="collection-item avatar">
           <img src={{asset('assets/img/recipe-icon.png')}} alt="" class="circle">
           <span class="title">Nome fantasia: {{$cliente->cli_fantasia}}</span>
           <p> Responsável: {{$cliente->cli_responsavel}}<br>
             Tipo do documento: {{$cliente->cli_doctipo}}<br>
             Nº do documento: {{$cliente->cli_docnumero}}<br>
-            Rua: {{$endereco->log_nome}}<br>
-            Bairro: {{$endereco->log_bairro}}<br>
-            Tipo: {{$endereco->log_tipo}}<br>
-            CEP: {{$endereco->log_cep}}<br>
-            Complemento: {{$endereco->end_complemento}}<br>
-            Número: {{$endereco->end_numero}}<br>
+            Rua: {{$cliente->log_nome}}<br>
+            Bairro: {{$cliente->log_bairro}}<br>
+            Tipo: {{$cliente->log_tipo}}<br>
+            CEP: {{$cliente->log_cep}}<br>
+            Complemento: {{$cliente->end_complemento}}<br>
+            Número: {{$cliente->end_numero}}<br>
            
 
           </p> 
@@ -36,7 +35,6 @@
       </form>
 
       </li>
-      @endforeach   
       @endforeach        
       </ul>
       @else 
