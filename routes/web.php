@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [HomeController::class, 'index']); //Chama a página inicial
 
-Route::view('/','welcome');
+Route::get('/cadastro', [ClienteController::class, 'create']); // Cria o formulário de cadastro
+Route::post('/cadastro', [ClienteController::class, 'store'])->name('salvar_cliente'); // Armazena os dados no banco
 
-Route::view('/Cadastro-de-cliente','client-register' );
-Route::view('/Cadastro-de-logradouro','log-register' );
-Route::view('/Listar','list' );
+Route::get('/cliente/deletar/{cli_id}', [ClienteController::class, 'destroy'])->name('deletar_cliente'); // Destroi um usuário do banco
+
+Route::get('/listar', [ClienteController::class, 'index']); // Lista todos os usuários cadastrados
+
+Route::view('/logradouro/cadastro','log-register' )->name('logregister'); // Carrega tela de cadastro de logradouro
+

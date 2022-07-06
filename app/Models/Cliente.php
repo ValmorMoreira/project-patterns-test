@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
+
+    protected  $primaryKey = 'cli_id';
+
     protected $fillable = [
         'cli_fantasia',	
         'cli_responsavel',
         'cli_doctipo',        
-        'cli_docnumero'
+        'cli_docnumero',
     ];
 
-    public function enderecos() {
-        return $this->hasMany(Endereco::class);
+    public function endereco() {
+        return $this->hasOne(Endereco::class, 'end_id');
     }
 
 }

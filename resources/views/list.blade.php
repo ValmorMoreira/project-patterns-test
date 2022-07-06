@@ -4,41 +4,28 @@
 
 @section('content')    
 <main class="container">
-    
-    <ul class="collection">
+  @if(count($clientes) > 0)
+  <div class="list">
+    <ul class="collection">    
+      @foreach ($clientes as $cliente)
         <li class="collection-item avatar">
           <img src={{asset('assets/img/recipe-icon.png')}} alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
+          <span class="title">Nome fantasia: {{$cliente->cli_fantasia}}</span>
+          <p> Responsável: {{$cliente->cli_responsavel}}<br>
+            Tipo do documento: {{$cliente->cli_doctipo}}<br>
+            Nº do documento: {{$cliente->cli_docnumero}}<br>
           </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle">folder</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle green">insert_chart</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">play_arrow</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
+        <a style="color: red" onclick="return confirm('Tem certeza que deseja excluir?')" href="{{route('deletar_cliente', ['cli_id' => $cliente->cli_id])}}" class="secondary-content"><i class="material-icons garbage-icon">delete</i><br>Deletar</a>
+        Cadastrado em : {{date('m/d/Y', strtotime($cliente->created_at))}}
+      </li>
+      @endforeach        
       </ul>
+      @else 
+      <div class="home-text">
+        <h4>Não existem clientes cadastrados</h4>
+    </div>
+  </div>
+      @endif
 </main>
 @endsection
 

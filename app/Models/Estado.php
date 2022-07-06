@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Logradouro extends Model
+class Estado extends Model
 {
     use HasFactory;
 
-    protected  $key = 'log_id';
+    protected  $key = 'est_id';
 
     protected $fillable = [
-        'log_cep',	
-        'log_nome',
-        'log_tipo',        
-        'log_bairro'
+        'est_nome',	
     ];
 }
-

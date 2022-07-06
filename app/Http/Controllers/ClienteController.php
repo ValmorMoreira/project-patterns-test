@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+
+        return view('list', [
+            'clientes' => $clientes
+        ]);
+
     }
 
     /**
@@ -24,7 +26,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('client-register' );
     }
 
     /**
@@ -35,7 +37,32 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = $request->only([
+            'cli_fantasia', 
+            'cli_responsavel', 
+            'cli_doctipo',
+            'cli_docnumero'
+        ]);
+
+       if($cliente){
+
+            $novoCliente = new Cliente();
+                            
+            $novoCliente->cli_fantasia =  $cliente['cli_fantasia'];
+            $novoCliente->cli_responsavel = $cliente['cli_responsavel'];
+            $novoCliente->cli_doctipo = $cliente['cli_doctipo'];
+            $novoCliente->cli_docnumero = $cliente['cli_docnumero'];
+
+            $novoCliente->save();
+
+            $request->session()->flash('success', 'Usuário cadastrado com sucesso!');
+            return redirect('/listar');   
+
+       }else{
+            $request->session()->flash('error', 'Usuário não foi cadastrado...');
+            return redirect('/cadastro'); 
+       }
+       
     }
 
     /**
@@ -46,7 +73,8 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        $c = new Cliente;
+        $c->show($cliente);
     }
 
     /**
@@ -78,8 +106,10 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id, Request $request)
     {
-        //
+        Cliente::find($id)->delete();
+        $request->session()->flash('success', 'Usuário deletado com sucesso!');
+        return redirect('/listar');   
     }
 }
