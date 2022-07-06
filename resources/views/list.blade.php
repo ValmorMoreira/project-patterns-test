@@ -18,8 +18,14 @@
             Tipo do documento: {{$cliente->cli_doctipo}}<br>
             Nº do documento: {{$cliente->cli_docnumero}}<br>
           </p>
-        <a style="color: red" onclick="return confirm('Tem certeza que deseja excluir?')" href="{{route('deletar_cliente', ['cli_id' => $cliente->cli_id])}}" class="secondary-content"><i class="material-icons garbage-icon">delete</i><br>Deletar</a>
-        Cadastrado em : {{date('m/d/Y', strtotime($cliente->created_at))}}
+        Cadastrado em : {{date('m/d/Y', strtotime($cliente->created_at))}} 
+      <form action="{{route('deletar_cliente', ['cli_id' => $cliente->cli_id])}}" method="POST">
+        @csrf
+        <button onclick="return confirm('Tem certeza que deseja excluir?')" class="btn red waves-effect waves-light secondary-content" type="submit" name="action">Excluir
+          <i class="material-icons left">delete</i>
+      </button>
+      </form>
+
       </li>
       @endforeach        
       </ul>

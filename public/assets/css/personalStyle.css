@@ -11,6 +11,10 @@ body {
     flex-direction: column;
 }
 
+.secondary-content{
+    top: 45px !important;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -103,15 +107,6 @@ h4 {
 	transform: scale(1.1);
 }
 
-.dropdown-content{
-    background-color: #b71c1c;
-    padding-top: 35px;
-}
-
-.dropdown-content a{
-  color: white !important;
-}
-
 .sidenav .dropdown-content{
     background-color: #797979;
   
@@ -140,29 +135,6 @@ h4 {
 .btn-search{
     float:initial;
     position: relative;
-}
-
-.ordenar-btn{
-    text-align: left;
-    color: #fff !important;
-    font-weight: 500 !important;
-}
-
-.select-dropdown{
-    background-color: rgb(255, 255, 255);
-}
-
-.select-dropdown span{
-    color: rgb(15, 15, 15) !important;
-}
-
-.textarea-comment{
-    background-color: #fff;
-    border: none;
-    border-radius: 20px;
-    width: 100%;
-    height: 40%;
-    resize: none;
 }
 
 .pagination { 
