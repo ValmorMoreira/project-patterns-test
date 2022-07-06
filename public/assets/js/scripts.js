@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
       success: function(resposta){
         //Agora basta definir os valores que você deseja preencher
         //automaticamente nos campos acima.
+        $("#complemento").val(resposta.complemento);
         $("#logradouro").val(resposta.logradouro);
         $("#bairro").val(resposta.bairro);
         $("#cidade").val(resposta.localidade);

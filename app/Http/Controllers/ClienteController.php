@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Endereco;
+use App\Models\Logradouro;
+use App\Models\Estado;
+use App\Models\Cidade;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -37,11 +41,19 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = $request->only([
+        $data = $request->only([
             'cli_fantasia', 
             'cli_responsavel', 
             'cli_doctipo',
-            'cli_docnumero'
+            'cli_docnumero',
+            'end_complemento',
+            'end_numero',
+            'log_cep',
+            'log_nome',
+            'log_tipo',
+            'log_bairro',
+            'cid_nome',
+            'est_nome'
         ]);
 
         //Falta uma validação para direcionar para cadastrar logradouro
@@ -50,16 +62,50 @@ class ClienteController extends Controller
         //     return redirect('logradouro/cadastro'); 
         // }
 
-       if($cliente){
+       if($data){
 
             $novoCliente = new Cliente();
-                            
-            $novoCliente->cli_fantasia =  $cliente['cli_fantasia'];
-            $novoCliente->cli_responsavel = $cliente['cli_responsavel'];
-            $novoCliente->cli_doctipo = $cliente['cli_doctipo'];
-            $novoCliente->cli_docnumero = $cliente['cli_docnumero'];
+            $novoLogradouro = new Logradouro();
+            $novaCidade = new Cidade();
+            $novoEndereco = new Endereco();
+            $novoEstado = new Estado();
 
+            $novoCliente->cli_fantasia =  $data['cli_fantasia'];
+            $novoCliente->cli_responsavel = $data['cli_responsavel'];
+            $novoCliente->cli_doctipo = $data['cli_doctipo'];
+            $novoCliente->cli_docnumero = $data['cli_docnumero'];
             $novoCliente->save();
+
+            $clienteId = Cliente::all()->last();    
+
+            $novoEstado->est_nome = $data['est_nome'];
+            $novoEstado->save();
+
+            $estadoId = Estado::all()->last();               
+            
+            $novaCidade->cid_nome = $data['cid_nome'];
+            $novaCidade->est_id = $estadoId->est_id;
+            $novaCidade->save();
+
+            $cidadeId = Cidade::all()->last();
+
+            $novoLogradouro->log_cep = $data['log_cep'];
+            $novoLogradouro->log_nome = $data['log_nome'];
+            $novoLogradouro->log_tipo = $data['log_tipo'];
+            $novoLogradouro->log_bairro = $data['log_bairro'];
+            $novoLogradouro->cid_id = $cidadeId;
+
+            $novoLogradouro->save();
+
+            $logId = Logradouro::all()->last();    
+
+            $novoEndereco->end_complemento = $data['end_complemento'];
+            $novoEndereco->end_numero = $data['end_numero'];
+            $novoEndereco->cli_id = $clienteId->cli_id;
+            $novoEndereco->log_id = $logId->log_id;
+            
+            $novoEndereco->save();
+
 
             $request->session()->flash('success', 'Usuário cadastrado com sucesso!');
             return redirect('/listar');   

@@ -9,6 +9,8 @@ class Cidade extends Model
 {
     use HasFactory;
 
+    protected  $primaryKey = 'cid_id';
+
     protected $fillable = [
         'cid_nome',
     ];

@@ -1,5 +1,5 @@
     <div class="col s6 input-field">
-        <select id="uf">
+        <select id="uf" name="est_nome">
 			<option value="AC">Acre</option>
 			<option value="AL">Alagoas</option>
 			<option value="AP">Amapá</option>

@@ -38,11 +38,15 @@
                 </div>
                 <div class="col s6">
                     <label>Endereço</label>
-                <input disabled id="logradouro" type="text" name="log_nome" value="">
+                <input readonly="readonly"  id="logradouro" type="text" name="log_nome" value="">
                 </div>
-                <div class="col s12">
+                <div class="col s6">
                     <label>Complemento</label>
-                <input id="complemento" type="text" name="end_complemento" value="">
+                <input  id="complemento" type="text" name="end_complemento" value="">
+                </div>
+                <div class="col s6">
+                    <label>Tipo</label>
+                <input id="complemento" type="text" name="log_tipo" value="">
                 </div>
                 <div class="col s6">
                     <label>Nº do endereço</label>
@@ -50,11 +54,11 @@
                 </div> 
                 <div class="col s6">
                     <label >Bairro</label>
-                    <input disabled id="bairro" type="text" name="end_bairro" value="">
+                    <input readonly="readonly" id="bairro" type="text" name="log_bairro" value="">
                 </div> 
                 <div class="col s6">
                     <label>Cidade</label>
-                    <input disabled id="cidade" type="text" name="cid_nome" value="">
+                    <input readonly="readonly" id="cidade" type="text" name="cid_nome" value="">
                 </div>
                 <x-forms.select />
             </div>

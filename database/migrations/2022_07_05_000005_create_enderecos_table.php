@@ -19,6 +19,7 @@ class CreateEnderecosTable extends Migration
             $table->string('end_numero', 255);
             $table->unsignedBigInteger('cli_id');
             $table->unsignedBigInteger('log_id');
+            $table->timestamps();
 
             $table->foreign('cli_id')->references('cli_id')->on('clientes')->onDelete('cascade');
             $table->foreign('log_id')->references('log_id')->on('logradouros')->onDelete('cascade');
