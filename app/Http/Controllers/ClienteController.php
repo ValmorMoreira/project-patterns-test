@@ -16,9 +16,11 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
+        $enderecos = Endereco::all();
 
         return view('list', [
-            'clientes' => $clientes
+            'clientes' => $clientes,
+            'enderecos' => $enderecos,
         ]);
 
     }
@@ -56,11 +58,11 @@ class ClienteController extends Controller
             'est_nome'
         ]);
 
-        //Falta uma validação para direcionar para cadastrar logradouro
-        // if (!!$request->filled('log_nome')) {
-        //     $request->session()->flash('error', 'CEP não localizado, cadastre seu endereço!');
-        //     return redirect('logradouro/cadastro'); 
-        // }
+        
+        if ($data['log_nome'] == null) {
+            $request->session()->flash('error', 'CEP não localizado, cadastre seu endereço!');
+            return redirect('logradouro/cadastro'); 
+        }
 
        if($data){
 
@@ -68,7 +70,6 @@ class ClienteController extends Controller
             $novoLogradouro = new Logradouro();
             $novaCidade = new Cidade();
             $novoEndereco = new Endereco();
-            $novoEstado = new Estado();
 
             $novoCliente->cli_fantasia =  $data['cli_fantasia'];
             $novoCliente->cli_responsavel = $data['cli_responsavel'];
@@ -78,22 +79,19 @@ class ClienteController extends Controller
 
             $clienteId = Cliente::all()->last();    
 
-            $novoEstado->est_nome = $data['est_nome'];
-            $novoEstado->save();
-
-            $estadoId = Estado::all()->last();               
+            $estadoId = Estado::find($data['est_nome']);              
             
             $novaCidade->cid_nome = $data['cid_nome'];
             $novaCidade->est_id = $estadoId->est_id;
             $novaCidade->save();
 
-            $cidadeId = Cidade::all()->last();
+            $cidadeId = Cidade::where('cid_nome' , $novaCidade->cid_nome)->first();
 
             $novoLogradouro->log_cep = $data['log_cep'];
             $novoLogradouro->log_nome = $data['log_nome'];
             $novoLogradouro->log_tipo = $data['log_tipo'];
             $novoLogradouro->log_bairro = $data['log_bairro'];
-            $novoLogradouro->cid_id = $cidadeId;
+            $novoLogradouro->cid_id = $cidadeId->cid_id;
 
             $novoLogradouro->save();
 

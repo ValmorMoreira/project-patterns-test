@@ -10,8 +10,12 @@ class Estado extends Model
     use HasFactory;
 
     protected  $primaryKey = 'est_id';
+    protected $keyType = 'string';
+    //protected $incrementing  = false;
 
-    protected $fillable = [
-        'est_nome'
-    ];
+    public $timestamps = false;
+
+    // protected $fillable = [
+    //     'est_nome'
+    // ];
 }

@@ -9,7 +9,7 @@ class Logradouro extends Model
 {
     use HasFactory;
 
-    protected  $key = 'log_id';
+    protected  $primaryKey = 'log_id';
 
     protected $fillable = [
         'log_cep',	
