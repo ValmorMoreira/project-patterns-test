@@ -26,6 +26,11 @@ class ClienteController extends Controller
 
     }
 
+    public function createLog(){
+        return view('log-register');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -62,7 +67,7 @@ class ClienteController extends Controller
         
         if ($data['log_nome'] == null) {
             $request->session()->flash('error', 'CEP não localizado, cadastre seu endereço!');
-            return redirect('logradouro/cadastro'); 
+            return redirect(route('logregister')); 
         }
 
        if($data){
@@ -89,11 +94,8 @@ class ClienteController extends Controller
             $novaCidade->est_id = $estadoId->est_id;
             $novaCidade->save();
 
-            $cidadeId = $novaCidade::all()->last();
-              
+            $cidadeId = $novaCidade::all()->last();          
            
-
-
             $novoLogradouro->log_cep = $data['log_cep'];
             $novoLogradouro->log_nome = $data['log_nome'];
             $novoLogradouro->log_tipo = $data['log_tipo'];
@@ -117,6 +119,64 @@ class ClienteController extends Controller
 
        }else{
             $request->session()->flash('error', 'Usuário não foi cadastrado...');
+            return redirect('/cadastro'); 
+       }
+       
+    }
+
+    public function storeLog(Request $request){
+
+        $data = $request->only([
+            'end_complemento',
+            'end_numero',
+            'log_cep',
+            'log_nome',
+            'log_tipo',
+            'log_bairro',
+            'cid_nome',
+            'est_nome'
+        ]);
+
+       if($data){
+
+            $novoLogradouro = new Logradouro();
+            $novaCidade = new Cidade();
+            $novoEndereco = new Endereco();
+
+            $estadoId = Estado::find($data['est_nome']);               
+
+
+            $novaCidade->cid_nome = $data['cid_nome'];
+            $novaCidade->est_id = $estadoId->est_id;
+            $novaCidade->save();
+
+            $cidadeId = $novaCidade::all()->last();       
+           
+            $novoLogradouro->log_cep = $data['log_cep'];
+            $novoLogradouro->log_nome = $data['log_nome'];
+            $novoLogradouro->log_tipo = $data['log_tipo'];
+            $novoLogradouro->log_bairro = $data['log_bairro'];
+            $novoLogradouro->cid_id = $cidadeId->cid_id;
+
+            $novoLogradouro->save();
+
+            $logId = Logradouro::all()->last();    
+
+            $clienteId = Cliente::all()->first(); //gambiarra feia
+
+            $novoEndereco->end_complemento = $data['end_complemento'];
+            $novoEndereco->end_numero = $data['end_numero'];
+            $novoEndereco->cli_id = $clienteId->cli_id;
+            $novoEndereco->log_id = $logId->log_id;
+            
+            $novoEndereco->save();
+
+
+            $request->session()->flash('success', 'Endereço cadastrado com sucesso!');
+            return redirect('/listar');   
+
+       }else{
+            $request->session()->flash('error', 'Endereço não foi cadastrado...');
             return redirect('/cadastro'); 
        }
        

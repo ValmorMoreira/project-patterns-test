@@ -24,5 +24,5 @@ Route::get('/listar', [ClienteController::class, 'index']); // Lista todos os us
 
 Route::post('/cliente/deletar/{cli_id}', [ClienteController::class, 'destroy'])->name('deletar_cliente'); // Destroi um usuário do banco
 
-Route::view('/logradouro/cadastro','log-register' )->name('logregister'); // Carrega tela de cadastro de logradouro
-
+Route::get('/logradouro/cadastro', [ClienteController::class, 'createLog'])->name('logregister'); // Cria o  form de logradouro de cadastro
+Route::post('/logradouro/cadastro', [ClienteController::class, 'storeLog'])->name('salvar_logradouro'); // Armazena os dados do form de logradouro

@@ -8,7 +8,7 @@
           </a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{{ url('/cadastro') }}">Cadastrar cliente</a></li>
-            <li><a href="{{ url('/logradouro/cadastro') }}">Cadastrar logradouro</a></li>
+            {{-- <li><a href="{{ url('/logradouro/cadastro') }}">Cadastrar logradouro</a></li> --}}
             <li><a href="{{ url('/listar') }}">Listar clientes</a></li>
           </ul>
         </div>
