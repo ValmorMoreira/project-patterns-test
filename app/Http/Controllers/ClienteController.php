@@ -18,7 +18,8 @@ class ClienteController extends Controller
     {
         //$clientes = Cliente::all();
 
-       $clientes = DB::select('SELECT clientes.*, logradouros.log_cep, logradouros.log_nome, enderecos.end_complemento, logradouros.log_tipo, enderecos.end_numero, logradouros.log_bairro FROM enderecos LEFT JOIN clientes ON enderecos.cli_id = clientes.cli_id INNER JOIN logradouros ON enderecos.log_id = logradouros.log_id;');
+       $clientes = DB::select('SELECT clientes.*, logradouros.log_cep, logradouros.log_nome,  logradouros.log_tipo, enderecos.end_complemento, enderecos.end_numero, logradouros.log_bairro, cidades.cid_nome,
+       estados.est_nome FROM enderecos LEFT JOIN clientes ON enderecos.cli_id = clientes.cli_id RIGHT JOIN logradouros ON enderecos.log_id = logradouros.log_id INNER JOIN cidades ON logradouros.cid_id = cidades.cid_id LEFT JOIN estados ON cidades.est_id = estados.est_id;');
 
         return view('list', [
             'clientes' => $clientes,
