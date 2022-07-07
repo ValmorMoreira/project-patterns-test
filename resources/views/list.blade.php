@@ -8,12 +8,10 @@
   @include('layouts.flash-message')
 
   @if(count($clientes) > 0 )
-  <div class="list">
-   
+  <div class="list">   
     <ul class="collection">    
-      
       @foreach ($clientes as $cliente)
-      @if($cliente->cli_id != null)
+        @if($cliente->cli_id != null)
         <li class="collection-item avatar">
           <img src={{asset('assets/img/recipe-icon.png')}} alt="" class="circle">
           <span class="title">Nome fantasia: {{$cliente->cli_fantasia}}</span>
@@ -46,7 +44,7 @@
         <h4>Não existem clientes cadastrados</h4>
     </div>
   </div>
-      @endif
+        @endif
 </main>
 @endsection
 
